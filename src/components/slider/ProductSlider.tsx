@@ -4,7 +4,6 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
-import { makeStyles } from '@mui/styles';
 import IconButton from '@mui/material/IconButton';
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
@@ -16,8 +15,6 @@ interface ProductSliderProps {
 
 
 export const ProductSlider = () => {
-
-	const iconButton = useStyles();
 
 	function NextArrow(props: any) {
 		const { className, style, onClick } = props;
@@ -118,11 +115,3 @@ const Container = styled.div`
 		font-weight: bold;
 	}
 `
-
-const useStyles = makeStyles({
-	root: {
-		'&:hover': {
-			backgroundColor: 'white',
-		}
-	}
-})

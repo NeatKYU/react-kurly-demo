@@ -1,14 +1,12 @@
-import { HeaderComponent } from '@components/header/Component';
-import { Slider } from '@components/slider/MainSlider';
 import styled from 'styled-components';
-import { ProductSlider } from '@components/slider/ProductSlider';
+import { HeaderComponent } from '@components/header/Component';
+import { Routes } from './routes';
 
 function App() {
   return (
     <>
       <HeaderComponent/>
-      <Slider/>
-      <ProductSlider/>
+      <Routes/>
       <Body/>
     </>
   );

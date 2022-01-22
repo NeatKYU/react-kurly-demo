@@ -57,9 +57,6 @@ const Container = styled.div`
 	align-items: center;
 	justify-content: space-between;
 
-	position: sticky;
-	top: 0;
-
 	div {
 		cursor: pointer;
 		
