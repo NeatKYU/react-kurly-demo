@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Proptypes from 'prop-types';
 import Button from '@mui/material/Button';
@@ -16,14 +17,33 @@ export const UserMemu = () => {
 
 	const classes = useStyles();
 	const loginButtonStyles = useLoginButtonStyles();
+	const history = useNavigate();
+
+	const moveLoginPage = () => {
+		history('/login')
+	}
+
+	const moveRegisterPage = () => {
+		history('/register')
+	}
 
 	return (
 		<Container>
 			<Stack direction='row' justifyContent='flex-end'>
-				<Button variant='text' size='small' className={classes.root}>
+				<Button 
+					variant='text' 
+					size='small' 
+					className={classes.root}
+					onClick={moveRegisterPage}
+				>
 					회원가입
 				</Button>
-				<Button variant='text' size='small' className={loginButtonStyles.root}>
+				<Button 
+					variant='text' 
+					size='small' 
+					className={loginButtonStyles.root}
+					onClick={moveLoginPage}
+				>
 					로그인
 				</Button>
 				<Dropdown show={showDropdown} onClick={() => setShowDropdown(!showDropdown)}>

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Proptypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { LoginButtonSet } from '@components/login/LoginButtonSet';
+import { useNavigate } from 'react-router-dom';
 
 import TextField from '@mui/material/TextField';
 
@@ -17,8 +18,14 @@ export const Login = () => {
 		formState: { errors }
 	} = useForm();
 
+	const history = useNavigate();
+
 	const onSubmit = () => {
 		console.log('hi')
+	}
+
+	const moveRegisterPage = () => {
+		history('/register')
 	}
 
 	return (
@@ -45,7 +52,7 @@ export const Login = () => {
 				/>
 				<LoginButtonSet/>
 				<input className='submit-button' type='submit' value='로그인' />
-				<button className='register-button'>
+				<button className='register-button' onClick={moveRegisterPage}>
 					회원가입
 				</button>
 			</form>
