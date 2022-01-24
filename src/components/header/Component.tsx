@@ -26,6 +26,8 @@ HeaderComponent.prototype = {
 const Container = styled.div`
 	width: 100%;
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	background-color: #fff;
 	position: sticky;
 	top: -6.3rem;
+	z-index: 100;
 `
