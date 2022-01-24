@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import Proptypes from 'prop-types';
 import IconButton from '@mui/material/IconButton';
@@ -6,6 +7,7 @@ import { BiSearchAlt2 } from 'react-icons/bi';
 import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
 import { GrLocation } from 'react-icons/gr'
 import { FaThList } from 'react-icons/fa'
+import { CartegoryModal } from '@components/modal/CartegoryModal';
 
 interface GrobalMenuProps {
 
@@ -17,12 +19,13 @@ return (
 	 <Container>
 		 <div className='cartegory'>
 			<FaThList/>
-		 	전체 카테고리
+		 	<span className='menu-title'>전체 카테고리</span>
+			<CartegoryModal/>
 		 </div>
-		 <div>신상품</div>
-		 <div>베스트</div>
-		 <div>알뜰쇼핑</div>
-		 <div>특가/혜택</div>
+		 <div className='menu-title'>신상품</div>
+		 <div className='menu-title'>베스트</div>
+		 <div className='menu-title'>알뜰쇼핑</div>
+		 <div className='menu-title'>특가/혜택</div> 
 		 <InputContainer>
 		 	<input></input>
 			 <IconButton size='small'>
@@ -57,7 +60,7 @@ const Container = styled.div`
 	align-items: center;
 	justify-content: space-between;
 
-	div {
+	.menu-title {
 		cursor: pointer;
 		
 		&:hover {
@@ -71,6 +74,15 @@ const Container = styled.div`
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		position: relative;
+		height: 100%;
+
+		//카테고리 모달의 main
+		&:hover {
+			.main {
+				display: block;
+			}
+		}
 
 		svg {
 			margin-right: 5px;
