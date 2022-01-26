@@ -1,17 +1,24 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Proptypes from 'prop-types';
 import IconButton from '@mui/material/IconButton';
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import pizza from '@asset/images/pizza.jpg';
 
-interface ProductProps {
+interface ProductCardProps {
 
 }
 
-export const Product = () => {
+export const ProductCard = () => {
+
+	const history = useNavigate();
+
+	const moveProductDetailPage = () => {
+		history('/product-detail')
+	}
 
 	return (
-		<Container>
+		<Container onClick={moveProductDetailPage}>
 			<div className='thumbnail'>
 				<img src={pizza}/>
 				<IconButton>
@@ -36,7 +43,7 @@ export const Product = () => {
 	)
 }
 
-Product.prototype = {
+ProductCard.prototype = {
 
 }
 

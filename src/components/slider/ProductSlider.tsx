@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import IconButton from '@mui/material/IconButton';
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
-import { Product } from '@components/products/Product';
+import { ProductCard } from '@components/products/ProductCard';
 
 interface ProductSliderProps {
 
@@ -87,11 +87,11 @@ export const ProductSlider = () => {
 				이 상품 어때요?
 			</div>
 			<Slider {...settings}>
-				<Product/>
-				<Product/>
-				<Product/>
-				<Product/>
-				<Product/>
+				<ProductCard/>
+				<ProductCard/>
+				<ProductCard/>
+				<ProductCard/>
+				<ProductCard/>
 			</Slider>
 		</Container>
 	)
