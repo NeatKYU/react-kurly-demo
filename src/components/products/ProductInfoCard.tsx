@@ -4,6 +4,8 @@ import Proptypes from 'prop-types';
 import Cake from '@asset/images/cake.jpg'
 import { CountButton } from '@components/shared/CountButton';
 import { CustomIconButton } from '@components/shared/CustomIconButton';
+import { CustomButton } from '@components/shared/CustomButton';
+import { CustomButtonGroup } from '@components/shared/CustomButtonGroup';
 import { AiOutlineHeart, AiOutlineBell } from 'react-icons/ai'
 
 interface ProductInfoCardProps {
@@ -90,10 +92,17 @@ export const ProductInfoCard = () => {
 						<span className='won'>원</span>
 					</div>
 				</div>
-				<div>
+				<CustomButtonGroup>
 					<CustomIconButton icon={<AiOutlineHeart/>} color={'#a058f1'}/>
 					<CustomIconButton icon={<AiOutlineBell/>} color={'gray'}/>
-				</div>
+					<CustomButton 
+						width={400} 
+						height={50} 
+						backgroundColor='#a058f1' 
+						label={'장바구니 담기'} 
+						color={'white'}
+					/>
+				</CustomButtonGroup>
 			</div>
 		</Container>
 	)
@@ -209,6 +218,7 @@ const Container = styled.div`
 		.final-price {
 			width: 100%;
 			margin-top: 30px;
+			margin-bottom: 20px;
 			display: flex;
 			justify-content: flex-end;
 			align-items: flex-end;

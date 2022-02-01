@@ -6,24 +6,33 @@ interface CustomButtonProps {
 	height: number;
 	backgroundColor: string;
 	label: string;
+	color: string;
 }
 
 export const CustomButton = (props: CustomButtonProps) => {
 
-	const { width, height, backgroundColor, label } = props;
+	const { width, height, backgroundColor, label, color } = props;
 
 	return (
-		<Container width={width} height={height}>
+		<Container style={{width: width, height: height, backgroundColor: backgroundColor, color: color || 'black'}}>
+			<span>{label}</span>
 		</Container>
 	)
 }
 
 CustomButton.prototype = {
-	width: Proptypes.number,
-	height: Proptypes.number,
+	width: Proptypes.number.isRequired,
+	height: Proptypes.number.isRequired,
+	backgroundColor: Proptypes.string.isRequired,
+	label: Proptypes.string.isRequired,
+	color: Proptypes.string,
 }
 
 const Container = styled.div`
-	width: ${(props) => props.width};
-	height: ${(props) => props.height}
+	font-size: 1.2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
+	
 `

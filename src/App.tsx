@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { HeaderComponent } from '@components/header/Component';
+import { TopButton } from '@components/shared/TopButton';
 import { Routes } from './routes';
 
 import './App.css';
@@ -10,6 +11,7 @@ function App() {
       <HeaderComponent/>
       <Routes/>
       <Body/>
+      <TopButton/>
     </div>
   );
 }
