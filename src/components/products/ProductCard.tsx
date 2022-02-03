@@ -6,7 +6,7 @@ import { AiOutlineShoppingCart } from 'react-icons/ai'
 import pizza from '@asset/images/pizza.jpg';
 
 interface ProductCardProps {
-
+	
 }
 
 export const ProductCard = () => {
@@ -63,9 +63,14 @@ const Container = styled.div`
 		display: flex;
 		justify-content: center;
 		position: relative;
+		overflow: hidden;
 
 		img {
 			width: 110%;
+			transition: all .2s;
+			&:hover {
+				transform: scale(1.1);
+			}
 		}
 		button {
 			background-color: #9f58f17d ;

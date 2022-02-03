@@ -9,7 +9,7 @@ interface ProductInfoNav {
 export const ProductInfoNav = () => {
 
   const navList = [
-    '상품문의', '상세정보', '후기', '문의'
+    '상품설명', '상세정보', '후기', '문의'
   ]
 
   const [activeButton, setActiveButton] = useState(0);
@@ -44,7 +44,8 @@ const Container = styled.div`
   height: 60px;
   display: flex;
   position: sticky;
-  top: 55px;
+  top: 56px;
+  z-index: 101;
 
   .product-nav {
     width: 25%;
@@ -53,12 +54,14 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    border: 1px solid lightgray;
 
   }
 
   .active {
     background-color: white;
     color: lightcoral;
+    border-bottom: 0px;
   }
 
   background-color: #f1f1f1;

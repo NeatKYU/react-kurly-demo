@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Proptypes from 'prop-types';
 import { FaReact } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom';
 
 interface LogoLayoutProps {
 
@@ -8,10 +9,16 @@ interface LogoLayoutProps {
 
 export const LogoLayout = () => {
 
+	const history = useNavigate();
+
+	const moveToHome = () => {
+		history('/')
+	}
+
 return (
 	 <Container>
-		 <FaReact/>
-		 <div>kyu kurly</div>
+			<FaReact onClick={moveToHome}/>
+			<div>kyu kurly</div>
 	 </Container>
  )
 }
@@ -29,5 +36,6 @@ const Container = styled.div`
 	flex-direction: column;
 	svg {
 		font-size: 3rem;
+		cursor: pointer;
 	}
 `

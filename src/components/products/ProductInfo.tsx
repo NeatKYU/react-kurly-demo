@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Proptypes from 'prop-types'
 import { ProductInfoNav } from '@components/products/ProductInfoNav';
+import { ProductNotice } from '@components/products/ProductNotice';
 
 interface ProductInfoProps {
 
@@ -11,6 +12,7 @@ export const ProductInfo = () => {
   return (
     <Container>
       <ProductInfoNav/>
+      <ProductNotice/>
     </Container>
   )
 }
