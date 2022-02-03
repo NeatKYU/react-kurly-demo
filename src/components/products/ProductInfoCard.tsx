@@ -118,7 +118,6 @@ const Container = styled.div`
 	display: flex;
 	justify-content: space-between;
 
-	background-color: aliceblue;
 
 	.product-image {
 		width: 400px;

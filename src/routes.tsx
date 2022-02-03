@@ -4,6 +4,7 @@ import { LoginPage } from '@pages/LoginPage';
 import { RegisterPage } from '@pages/RegisterPage';
 import { ProductDetailPage } from '@pages/ProductDetailPage';
 import { CartPage } from '@pages/CartPage';
+import { ConsumerCenterPage } from '@pages/ConsumerCenterPage';
 
 export const Routes = () => {
 
@@ -14,6 +15,7 @@ return (
 		<Route path={'/register'} element={<RegisterPage/>}/>
 		<Route path={'/product-detail'} element={<ProductDetailPage/>}/>
 		<Route path={'/cart'} element={<CartPage/>}/>
+		<Route path={'/consumer'} element={<ConsumerCenterPage/>}/>
 	</Switch>
  )
 }
