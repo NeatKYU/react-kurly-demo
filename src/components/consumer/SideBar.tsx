@@ -4,18 +4,24 @@ import Proptypes from 'prop-types';
 import { IoIosArrowForward } from 'react-icons/io'
 
 interface SideBarProps {
-
+	setRoute: any;
 }
 
-export const SideBar = () => {
+export const SideBar = (props: SideBarProps) => {
+
+	const { setRoute } = props;
+
+	const handleRoute = (routeNumber: number) => {
+		setRoute(routeNumber)
+	}
 
 	return (
 		<Container>
 			<div className='sidebar-title'>고객센터</div>
 			<div className='sidebar-nav'>
-				<div className='menu'>공지사항<IoIosArrowForward/></div>
-				<div className='menu'>자주하는 질문<IoIosArrowForward/></div>
-				<div className='menu'>1:1문의<IoIosArrowForward/></div>
+				<div className='menu' onClick={() => handleRoute(1)}>공지사항<IoIosArrowForward/></div>
+				<div className='menu' onClick={() => handleRoute(2)}>자주하는 질문<IoIosArrowForward/></div>
+				<div className='menu' onClick={() => handleRoute(3)}>1:1문의<IoIosArrowForward/></div>
 			</div>
 			<div className='box'/>
 			<div className='help-button flex-all-center'>
