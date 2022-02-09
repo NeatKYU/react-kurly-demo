@@ -51,7 +51,7 @@ app.post("/api/user/login", (req, res) => {
   // const { label, status, priority } = req.body;
 	const {id, password} = req.body;
 
-	const currentPW = bcrypt.hashSync(password, 10);
+	// const currentPW = bcrypt.hashSync(password, 10);
 	// const same = bcrypt.compareSync(password, enbcryptPW);
 
   pool.query( "SELECT * FROM user_info WHERE id=$1", 
@@ -62,21 +62,27 @@ app.post("/api/user/login", (req, res) => {
       }
 			if(results.rows[0]){ //아이디가 있으면
 				const userInfo = results.rows[0];
-				console.log(userInfo)
-				const same = bcrypt.compare(currentPW, userInfo.password)
+				const same = bcrypt.compareSync(password, userInfo.password)
 				if(same) { //비밀번호가 맞으면
 					res.send({
 						token: 'not yet',
-						status: 'success',
+						status: true,
+						data: {
+							...userInfo,
+							password: ''
+						},
+						errorMessage: null,
 					})
 				} else { //비밀번호가 틀림
 					res.send({ 
-						status: 'password not same' 
+						status: false,
+						errorMessage: 'password not same' 
 					})
 				}
 			} else { //아이디틀림
 				res.send({
-					status: 'user id not exist'
+					status: false,
+					errorMessage: 'user id not exist'
 				})
 			}
     }

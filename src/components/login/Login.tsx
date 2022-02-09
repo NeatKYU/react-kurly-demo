@@ -1,12 +1,22 @@
 import styled from 'styled-components';
 import Proptypes from 'prop-types';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { LoginButtonSet } from '@components/login/LoginButtonSet';
 import { useNavigate } from 'react-router-dom';
 
 import TextField from '@mui/material/TextField';
+import axios from 'axios';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { authAtom } from '@recoils/Auth';
+import { isLoginAtom, userAtom } from '@recoils/User';
 
 interface LoginProps {
+
+}
+
+interface FormData {
+	id: string,
+	password: string,
 
 }
 
@@ -14,42 +24,65 @@ export const Login = () => {
 
 	const { 
 		register, 
-		handleSubmit, 
+		handleSubmit,
+		watch,
 		formState: { errors }
-	} = useForm();
+	} = useForm<FormData>();
+
+	const setAuth = useSetRecoilState(authAtom);
+	const auth = useRecoilValue(authAtom);
+	const setIsLogin = useSetRecoilState(isLoginAtom);
+	const setUser = useSetRecoilState(userAtom);
 
 	const history = useNavigate();
 
-	const onSubmit = () => {
-		console.log('hi')
+	const onSubmit: SubmitHandler<FormData> = async (data) => {
+		await axios.post('/api/user/login', data).then(
+			(res) => {
+				if(res.data.status){
+					sessionStorage.setItem('user', JSON.stringify(res.data.data))
+					setAuth(res.data.data)
+					setUser(res.data.data)
+					setIsLogin(true)
+					console.log(res.data.data)
+					history('/')
+				} else {
+					console.log(res.data.errorMessage)
+				}
+			}
+		)
 	}
 
 	const moveRegisterPage = () => {
 		history('/register')
 	}
 
+	console.log(auth)
+
 	return (
 		<Container>
 			<div className='login-title'>로그인</div>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<TextField 
-					{...register('name', {required: true})} 
+					{...register('id', {required: true})} 
 					id="outlined-basic" 
 					label="아이디" 
 					variant="outlined"
-					error={errors.name}
+					// error={errors.name}
 					margin="dense"
 					fullWidth
 				/>
+				{errors.id && '아이디를 입력해주세요'}
 				<TextField 
 					{...register('password', {required: true})} 
 					id="outlined-basic"
 					label="비밀번호" 
 					variant="outlined" 
-					error={errors.password}
+					// error={errors.password}
 					margin="dense"
 					fullWidth
 				/>
+				{errors.password && '비밀번호를 입력해주세요'}
 				<LoginButtonSet/>
 				<input className='submit-button' type='submit' value='로그인' />
 				<button className='register-button' onClick={moveRegisterPage}>
