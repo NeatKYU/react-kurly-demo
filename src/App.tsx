@@ -8,7 +8,9 @@ import './App.css';
 function App() {
   return (
     <div className='App'>
-      <HeaderComponent/>
+      <Container className='flex-vertical-center'>
+        <HeaderComponent/>
+      </Container>
       <Routes/>
       <Body/>
       <TopButton/>
@@ -22,4 +24,12 @@ export default App;
 const Body = styled.div`
   width: 100%;
   height: 200vh;
+`
+
+const Container = styled.div`
+  width: 100%;
+  position: sticky;
+	top: -6.3rem;
+  z-index: 100;
+  background-color: #fff;
 `

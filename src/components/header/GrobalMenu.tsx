@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import Proptypes from 'prop-types';
 import IconButton from '@mui/material/IconButton';
@@ -26,7 +25,7 @@ return (
 		 <div className='menu-title'>베스트</div>
 		 <div className='menu-title'>알뜰쇼핑</div>
 		 <div className='menu-title'>특가/혜택</div> 
-		 <InputContainer>
+		 <InputContainer className='flex-all-center'>
 		 	<input></input>
 			 <IconButton size='small'>
 				 <BiSearchAlt2/>
@@ -98,27 +97,22 @@ const Container = styled.div`
 
 const InputContainer = styled.div`
 	width: 12rem;
-	height: 2rem;
-	display: flex;
-	justify-content: center;
-	position: relative;
-	padding-top: 0.4rem;
+	height: 1.95rem;
+	background-color: #f3f3f3;
+	border-radius: 2rem;
 	
 	input {
 		width: 90%;
 		height: 80%;
-		border-radius: 2rem;
 		padding-left: 1rem;
-		background-color: #f3f3f3;
 		border: 0px;
+		background-color: transparent;
+		outline: none;
 	}
 
 	button {
-		position: absolute;
-		right: 7px;
-		top: 1px;
 		padding: 0.2rem !important;
-		margin-top: 0.4rem;
+		margin-right: 10px;
 	}
 
 `
