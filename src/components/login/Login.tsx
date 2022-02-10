@@ -1,14 +1,16 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import Proptypes from 'prop-types';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { LoginButtonSet } from '@components/login/LoginButtonSet';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useSetRecoilState } from 'recoil';
 
 import TextField from '@mui/material/TextField';
-import axios from 'axios';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { authAtom } from '@recoils/Auth';
 import { isLoginAtom, userAtom } from '@recoils/User';
+import { ErrorMessage } from '@components/shared/ErrorMessage';
 
 interface LoginProps {
 
@@ -30,9 +32,9 @@ export const Login = () => {
 	} = useForm<FormData>();
 
 	const setAuth = useSetRecoilState(authAtom);
-	const auth = useRecoilValue(authAtom);
 	const setIsLogin = useSetRecoilState(isLoginAtom);
 	const setUser = useSetRecoilState(userAtom);
+	const [errorMessage, setErrorMessage] = useState('');
 
 	const history = useNavigate();
 
@@ -44,10 +46,9 @@ export const Login = () => {
 					setAuth(res.data.data)
 					setUser(res.data.data)
 					setIsLogin(true)
-					console.log(res.data.data)
 					history('/')
 				} else {
-					console.log(res.data.errorMessage)
+					setErrorMessage(res.data.errorMessage)
 				}
 			}
 		)
@@ -57,39 +58,43 @@ export const Login = () => {
 		history('/register')
 	}
 
-	console.log(auth)
-
 	return (
+		<>
 		<Container>
 			<div className='login-title'>로그인</div>
-			<form onSubmit={handleSubmit(onSubmit)}>
+			<form onSubmit={handleSubmit(onSubmit)} style={{width: '100%'}}>
 				<TextField 
 					{...register('id', {required: true})} 
 					id="outlined-basic" 
 					label="아이디" 
 					variant="outlined"
-					// error={errors.name}
+					// error={errors.id}
 					margin="dense"
 					fullWidth
 				/>
-				{errors.id && '아이디를 입력해주세요'}
+				{errors.id && <ErrorMessage message={'아이디를 입력해주세요'} styledHeight='30px'/>}
 				<TextField 
 					{...register('password', {required: true})} 
 					id="outlined-basic"
 					label="비밀번호" 
-					variant="outlined" 
+					variant="outlined"
+					type="password"
 					// error={errors.password}
 					margin="dense"
 					fullWidth
 				/>
-				{errors.password && '비밀번호를 입력해주세요'}
+				{errors.password && <ErrorMessage message={'비밀번호를 입력해주세요'} styledHeight='30px'/>}
 				<LoginButtonSet/>
 				<input className='submit-button' type='submit' value='로그인' />
 				<button className='register-button' onClick={moveRegisterPage}>
 					회원가입
 				</button>
 			</form>
+			{
+				errorMessage && <ErrorMessage message={errorMessage} />
+			}
 		</Container>
+		</>
 	)
 }
 
@@ -99,10 +104,10 @@ Login.prototype = {
 
 const Container = styled.div`
 	width: 20rem;
-	height: 30rem;
+	height: 40rem;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 
 	.login-title {
@@ -123,6 +128,11 @@ const Container = styled.div`
 		font-size: 1rem;
 		font-weight: bold;
 		margin-bottom: 10px;
+		cursor: pointer;
+		
+		&:hover {
+			background-color: #7b259b;
+		}
 	}
 
 	.register-button {
@@ -134,6 +144,12 @@ const Container = styled.div`
 		font-size: 1rem;
 		font-weight: bold;
 		border: 1px solid #5f0081;
+		margin-bottom: 10px;
+		cursor: pointer;
+
+		&:hover {
+			color: #a23bc7;
+		}
 	}
 	
 `
