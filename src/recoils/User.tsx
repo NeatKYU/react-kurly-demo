@@ -5,6 +5,11 @@ export const userAtom = atom({
 	default: JSON.parse(sessionStorage.getItem('user')|| '{}')
 })
 
+export const userMenuAtom = atom({
+	key: 'userMenu',
+	default: 1,
+})
+
 export const isLoginAtom = atom({
 	key: 'isLogin',
 	default: sessionStorage.getItem('user') ? true : false

@@ -5,7 +5,8 @@
       "@components/*": ["src/components/*"],
 			"@asset/*": ["src/asset/*"],
 			"@pages/*": ["src/pages/*"],
-      "@recoils/*": ["src/recoils/*"]
+      "@recoils/*": ["src/recoils/*"],
+      "@actions/*": ["src/actions/*"]
     }
   }
 }

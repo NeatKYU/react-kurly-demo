@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Proptypes from 'prop-types';
 
-import { SideBar } from '@components/consumer/SideBar';
+import { SideBar } from '@components/shared/SideBar';
 import { Board } from '@components/consumer/Board';
 import Pagination from '@mui/material/Pagination';
 
@@ -29,12 +29,13 @@ export const ConsumerCenterPage = () => {
 
 	return (
 		<Container>
-			<SideBar setRoute={setCurrentRoute}/>
+			<SideBar setRoute={setCurrentRoute} title='고객센터' menuList={menuList}/>
 			<div className='board-section'>
 				<Board titleObj={menuList[currentRoute-1]}/>
 				<Pagination 
-					style={{padding: '40px 0 30px 25px', justifyContent: 'center'}}
-					count={10} variant="outlined" shape="rounded" 
+					className='flex-horizon-center'
+					style={{padding: '40px 0 30px 0'}}
+					count={10} variant="outlined" shape="rounded"
 				/>
 				<div className='endline'/>
 			</div>

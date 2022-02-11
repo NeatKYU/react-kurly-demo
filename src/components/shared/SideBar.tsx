@@ -5,11 +5,13 @@ import { IoIosArrowForward } from 'react-icons/io'
 
 interface SideBarProps {
 	setRoute: any;
+	menuList: any;
+	title: string;
 }
 
 export const SideBar = (props: SideBarProps) => {
 
-	const { setRoute } = props;
+	const { setRoute, title, menuList } = props;
 
 	const handleRoute = (routeNumber: number) => {
 		setRoute(routeNumber)
@@ -17,11 +19,16 @@ export const SideBar = (props: SideBarProps) => {
 
 	return (
 		<Container>
-			<div className='sidebar-title'>고객센터</div>
+			<div className='sidebar-title'>{title}</div>
 			<div className='sidebar-nav'>
-				<div className='menu' onClick={() => handleRoute(1)}>공지사항<IoIosArrowForward/></div>
+				{
+					menuList && menuList.map((item: any, idx: number) => (
+						<div className='menu' onClick={() => handleRoute(idx+1)}>{item.title}<IoIosArrowForward/></div>
+					))
+				}
+				{/* <div className='menu' onClick={() => handleRoute(1)}>공지사항<IoIosArrowForward/></div>
 				<div className='menu' onClick={() => handleRoute(2)}>자주하는 질문<IoIosArrowForward/></div>
-				<div className='menu' onClick={() => handleRoute(3)}>1:1문의<IoIosArrowForward/></div>
+				<div className='menu' onClick={() => handleRoute(3)}>1:1문의<IoIosArrowForward/></div> */}
 			</div>
 			<div className='box'/>
 			<div className='help-button flex-all-center'>

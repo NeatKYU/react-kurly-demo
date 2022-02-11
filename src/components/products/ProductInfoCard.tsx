@@ -96,8 +96,7 @@ export const ProductInfoCard = () => {
 					<CustomIconButton icon={<AiOutlineHeart/>} color={'#a058f1'}/>
 					<CustomIconButton icon={<AiOutlineBell/>} color={'gray'}/>
 					<CustomButton 
-						width={400} 
-						height={50} 
+						width='400px' 
 						backgroundColor='#a058f1' 
 						label={'장바구니 담기'} 
 						color={'white'}

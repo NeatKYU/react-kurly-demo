@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import Proptypes, { any, string } from 'prop-types';
+import Proptypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFish, faCarrot, faAppleAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -23,7 +23,6 @@ export const CartegoryModal = (props: CartegoryModalProps) => {
 	const [currentList, setCurrentList] = useState<string[]>([]);
 
 	const handleSubCartegory = (cartegory: number) => {
-		console.log("???", cartegory)
 		if(cartegory === 1) {
 			setCurrentList(subList1);
 		} else if(cartegory === 2) {

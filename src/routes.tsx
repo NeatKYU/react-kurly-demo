@@ -5,6 +5,7 @@ import { RegisterPage } from '@pages/RegisterPage';
 import { ProductDetailPage } from '@pages/ProductDetailPage';
 import { CartPage } from '@pages/CartPage';
 import { ConsumerCenterPage } from '@pages/ConsumerCenterPage';
+import { MyPage } from '@pages/MyPage';
 
 export const Routes = () => {
 
@@ -16,6 +17,7 @@ return (
 		<Route path={'/product-detail'} element={<ProductDetailPage/>}/>
 		<Route path={'/cart'} element={<CartPage/>}/>
 		<Route path={'/consumer'} element={<ConsumerCenterPage/>}/>
+		<Route path={'/mypage'} element={<MyPage/>}/>
 	</Switch>
  )
 }

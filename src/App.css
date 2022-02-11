@@ -18,6 +18,10 @@
   justify-content: center;
 }
 
+.float-right {
+  float: right;
+}
+
 .box {
   width: 100%;
   height: 50px;
