@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useSetRecoilState } from 'recoil';
 import { userAtom, isLoginAtom } from '@recoils/User';
 

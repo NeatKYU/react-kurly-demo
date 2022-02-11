@@ -66,7 +66,7 @@ export const UserMemu = () => {
 									<div className='div-item' onClick={() => moveMyPage(idx+1)}>{item}</div>
 								))
 							}
-							<div className='div-item' onClick={logout}>로그아웃</div>
+							<div className='div-item' onClick={handleLogout}>로그아웃</div>
 						</div>
 					</Dropdown>
 				</div>
