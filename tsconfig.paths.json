@@ -6,7 +6,8 @@
 			"@asset/*": ["src/asset/*"],
 			"@pages/*": ["src/pages/*"],
       "@recoils/*": ["src/recoils/*"],
-      "@actions/*": ["src/actions/*"]
+      "@actions/*": ["src/actions/*"],
+      "@utils/*": ["src/utils/*"]
     }
   }
 }

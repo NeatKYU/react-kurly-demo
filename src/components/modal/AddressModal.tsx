@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Proptypes from 'prop-types';
 import SearchPost from 'react-daum-postcode';
 import { Box, Button } from '@mui/material';
+import { fullAddressAtom, extraAddressAtom } from '@recoils/Address';
+import { useSetRecoilState } from 'recoil';
 
 interface AddressModalProps {
 	isOpenModal: boolean;
@@ -12,6 +14,8 @@ interface AddressModalProps {
 export const AddressModal = (props: AddressModalProps) => {
 
 	const { isOpenModal, handleCloseModal } = props;
+	const setFullAddress = useSetRecoilState(fullAddressAtom);
+	const setExtraAddress = useSetRecoilState(extraAddressAtom);
 
 	const modalStyle = {
 		position: 'absolute' as 'absolute',
@@ -27,9 +31,9 @@ export const AddressModal = (props: AddressModalProps) => {
 		pb: 3,
 	};
 
-	const onComplete = () => {
+	const onComplete = (data: any) => {
 		//여기서 address input값 전역변수로 설정하면될듯
-		handleCloseModal();
+		setFullAddress(data.address);
 	}
 
 	return (
@@ -38,7 +42,7 @@ export const AddressModal = (props: AddressModalProps) => {
 				open={isOpenModal}
 			>
 				<Box sx={{ ...modalStyle }}>
-					<SearchPost onClose={handleCloseModal}/>
+					<SearchPost onClose={handleCloseModal} onComplete={onComplete}/>
 					<Button sx={{float: 'right'}} variant='outlined' onClick={handleCloseModal}>취소</Button>
         </Box>
 			</Modal>

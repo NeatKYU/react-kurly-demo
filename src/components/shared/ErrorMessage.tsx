@@ -12,8 +12,6 @@ export const ErrorMessage = (props: ErrorMessageProps) => {
 
 	const { message, styledWidth, styledHeight, backgroundColor } = props;
 
-	console.log(styledWidth, backgroundColor)
-
 	return (
 		<Container 
 			className='flex-all-center' 

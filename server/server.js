@@ -23,12 +23,12 @@ const pool = new Pool({
 
 // user register api
 app.post("/api/user/register", (req, res) => {
-  const { id, password, user_name, phone_number, address1, address2, birthday, gender  } = req.body;
+  const { id, password, user_name, phone_number, address1, address2, birthday, gender, email } = req.body;
 
 	const enbcryptPW = bcrypt.hashSync(password, 10);
 
-  pool.query("INSERT INTO user_info (id, password, user_name, phone_number, address1, address2, birthday, gender) VALUES($1, $2, $3, $4, $5, $6, $7, $8)", 
-	[ id, enbcryptPW, user_name, phone_number, address1, address2, birthday, gender ],
+  pool.query("INSERT INTO user_info (id, password, user_name, phone_number, address1, address2, birthday, gender, email) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)", 
+	[ id, enbcryptPW, user_name, phone_number, address1, address2, birthday, gender, email ],
 	(error, results) => {
       if (error) {
         throw error;
@@ -40,6 +40,40 @@ app.post("/api/user/register", (req, res) => {
 			})
     }
   );
+});
+
+app.post("/api/user/register/id", (req, res) => {
+  const { id } = req.body;
+
+  pool.query("SELECT count(id) FROM user_info WHERE id=$1", 
+	[ id ],
+	(error, results) => {
+      if (error) {
+        throw error;
+      }
+			console.log('user id check!!' ,results.rows[0].count)
+			res.send({
+				count: parseInt(results.rows[0].count)
+			})
+    }
+	);
+});
+
+app.post("/api/user/register/email", (req, res) => {
+  const { email } = req.body;
+
+  pool.query("SELECT count(email) FROM user_info WHERE email=$1", 
+	[ email ],
+	(error, results) => {
+      if (error) {
+        throw error;
+      }
+			console.log('user email check!!' ,results.rows[0].count)
+			res.send({
+				count: parseInt(results.rows[0].count)
+			})
+    }
+	);
 });
 
 // 유저 로그인
