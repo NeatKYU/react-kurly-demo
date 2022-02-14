@@ -7,6 +7,8 @@ interface CustomButtonProps {
 	backgroundColor?: string;
 	label?: string;
 	color?: string;
+	borderColor?: string;
+	fontSize?: string;
 	startIcon?: React.ReactElement;
 	endIcon?: React.ReactElement;
 	onClick?: () => void;
@@ -16,13 +18,22 @@ export const CustomButton = (props: CustomButtonProps) => {
 
 	const { 
 		width, height, 
-		backgroundColor, label, color, 
+		backgroundColor, label, color, borderColor, fontSize,
 		startIcon, endIcon,
 		onClick
 	} = props;
 
 	return (
-		<Container onClick={onClick} style={{width: width, height: height, backgroundColor: backgroundColor, color: color || 'black'}}>
+		<Container onClick={onClick} 
+			style={{
+				width: width, 
+				height: height, 
+				backgroundColor: backgroundColor, 
+				color: color || 'black',
+				borderColor: borderColor || 'white',
+				fontSize: fontSize || '1.2rem'
+			}}
+		>
 			{startIcon}
 			<span>{label}</span>
 			{endIcon}
@@ -31,11 +42,13 @@ export const CustomButton = (props: CustomButtonProps) => {
 }
 
 CustomButton.propTypes= {
-	width: Proptypes.number.isRequired,
-	height: Proptypes.number.isRequired,
+	width: Proptypes.string.isRequired,
+	height: Proptypes.string.isRequired,
 	backgroundColor: Proptypes.string.isRequired,
 	label: Proptypes.string.isRequired,
 	color: Proptypes.string,
+	borderColor: Proptypes.string,
+	fontSize: Proptypes.string,
 }
 
 CustomButton.defaultProps = {
@@ -44,16 +57,18 @@ CustomButton.defaultProps = {
 	backgroundColor: '#fff',
 	label: '',
 	color: 'black',
+	borderColor: 'white',
+	fontSize: '1.2rem',
 	startIcon: '',
 	endIcon: '',
 }
 
 const Container = styled.div`
-	font-size: 1.2rem;
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
 	border-radius: 5px;
+	border: 1px solid white;
 	cursor: pointer;
 
 	svg {

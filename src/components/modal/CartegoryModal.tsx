@@ -48,8 +48,8 @@ export const CartegoryModal = (props: CartegoryModalProps) => {
 					<div>채소</div>
 				</div>
 				<div className='sub'>
-					{currentList && currentList.map((item) => (
-						<div className='contents'>
+					{currentList && currentList.map((item, idx) => (
+						<div key={idx} className='contents'>
 							<div>{item}</div>
 						</div>
 					))}

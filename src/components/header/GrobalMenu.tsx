@@ -7,6 +7,7 @@ import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
 import { GrLocation } from 'react-icons/gr'
 import { FaThList } from 'react-icons/fa'
 import { CartegoryModal } from '@components/modal/CartegoryModal';
+import { useNavigate } from 'react-router-dom';
 
 interface GrobalMenuProps {
 
@@ -14,36 +15,42 @@ interface GrobalMenuProps {
 
 export const GrobalMenu = () => {
 
-return (
-	 <Container>
-		 <div className='cartegory'>
-			<FaThList/>
-		 	<span className='menu-title'>전체 카테고리</span>
-			<CartegoryModal/>
-		 </div>
-		 <div className='menu-title'>신상품</div>
-		 <div className='menu-title'>베스트</div>
-		 <div className='menu-title'>알뜰쇼핑</div>
-		 <div className='menu-title'>특가/혜택</div> 
-		 <InputContainer className='flex-all-center'>
-		 	<input></input>
-			 <IconButton size='small'>
-				 <BiSearchAlt2/>
-			 </IconButton>
-		 </InputContainer>
-		 <ButtonGroup>
-			<IconButton>
-				<GrLocation/>
-			</IconButton>
-			<IconButton>
-				<AiOutlineHeart/>
-			</IconButton>
-			<IconButton>
-				<AiOutlineShoppingCart/>
-			</IconButton>
-		 </ButtonGroup>
-	 </Container>
- )
+	const history = useNavigate();
+
+	const moveToCartPage = () => {
+		history('/cart')
+	}
+
+	return (
+		<Container>
+			<div className='cartegory'>
+				<FaThList/>
+				<span className='menu-title'>전체 카테고리</span>
+				<CartegoryModal/>
+			</div>
+			<div className='menu-title'>신상품</div>
+			<div className='menu-title'>베스트</div>
+			<div className='menu-title'>알뜰쇼핑</div>
+			<div className='menu-title'>특가/혜택</div> 
+			<InputContainer className='flex-all-center'>
+				<input></input>
+				<IconButton size='small'>
+					<BiSearchAlt2/>
+				</IconButton>
+			</InputContainer>
+			<ButtonGroup>
+				<IconButton>
+					<GrLocation/>
+				</IconButton>
+				<IconButton>
+					<AiOutlineHeart/>
+				</IconButton>
+				<IconButton onClick={moveToCartPage}>
+					<AiOutlineShoppingCart />
+				</IconButton>
+			</ButtonGroup>
+		</Container>
+	)
 }
 
 GrobalMenu.prototype = {

@@ -21,6 +21,9 @@
 .float-right {
   float: right;
 }
+.float-left {
+  float: left;
+}
 
 .box {
   width: 100%;

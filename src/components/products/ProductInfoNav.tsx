@@ -23,6 +23,7 @@ export const ProductInfoNav = () => {
       {
         navList && navList.map((item, idx) => (
           <div 
+            key={idx}
             className={`product-nav ${idx === activeButton ? 'active' : ''}`}
             onClick={() => handleActiveButton(idx)}
           >

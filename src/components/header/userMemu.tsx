@@ -63,7 +63,7 @@ export const UserMemu = () => {
 						<div className='drop-zone'>
 							{
 								myServiceList.map((item, idx) => (
-									<div className='div-item' onClick={() => moveMyPage(idx+1)}>{item}</div>
+									<div className='div-item' key={idx} onClick={() => moveMyPage(idx+1)}>{item}</div>
 								))
 							}
 							<div className='div-item' onClick={handleLogout}>로그아웃</div>
@@ -104,8 +104,8 @@ export const UserMemu = () => {
 					<MdArrowDropDown/>
 					<div className='drop-zone'>
 						{
-							consumerCenterList.map((item) => (
-								<div className='div-item'>{item}</div>
+							consumerCenterList.map((item, idx) => (
+								<div key={idx} className='div-item'>{item}</div>
 							))
 						}
 					</div>

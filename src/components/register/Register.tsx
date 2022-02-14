@@ -120,7 +120,9 @@ export const Register = () => {
 		if(response.data.count === 0){
 			setIsUserEmailCheck(true);
 			alert("이메일 사용가능합니다.")
-		} 
+		} else {
+			alert('다른 이메일을 사용해주세요.');
+		}
 	}
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

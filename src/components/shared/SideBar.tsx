@@ -23,7 +23,7 @@ export const SideBar = (props: SideBarProps) => {
 			<div className='sidebar-nav'>
 				{
 					menuList && menuList.map((item: any, idx: number) => (
-						<div className='menu' onClick={() => handleRoute(idx+1)}>{item.title}<IoIosArrowForward/></div>
+						<div key={idx} className='menu' onClick={() => handleRoute(idx+1)}>{item.title}<IoIosArrowForward/></div>
 					))
 				}
 				{/* <div className='menu' onClick={() => handleRoute(1)}>공지사항<IoIosArrowForward/></div>

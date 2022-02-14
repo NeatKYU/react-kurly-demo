@@ -39,8 +39,8 @@ export const CustomSelectBox = (props: CustomSelectBoxProps) => {
 			</div>
 			{isOpen ? <MdArrowDropUp onClick={() => setIsOpen(!isOpen)}/> : <MdArrowDropDown onClick={() => setIsOpen(!isOpen)}/>}
 			<div className='drop'>
-				{selectList && selectList.map((item: string) => (
-					<div onClick={() => handleSelected(item)}>{item}</div>
+				{selectList && selectList.map((item: string, idx: number) => (
+					<div key={idx} onClick={() => handleSelected(item)}>{item}</div>
 				))}
 			</div>
 		</Container>

@@ -40,17 +40,17 @@ export const Notice = (props: NoticeProps) => {
 				{
 					bodyList && !isOpen && bodyList.map((item: any, idx: number) => (
 						<>
-						<div className='product-notice-body'>
-							<div className='title'>{item.title}</div>
-							<div className='body'>
-							{
-								item.body.map((bodyItem: any) => (
-									<>{bodyItem}</>
-								))
-							}
+							<div key={idx} className='product-notice-body'>
+								<div className='title'>{item.title}</div>
+								<div className='body'>
+								{
+									item.body.map((bodyItem: any) => (
+										<>{bodyItem}</>
+									))
+								}
+								</div>
 							</div>
-						</div>
-						{idx < bodyList.length-1 ? <div className='divider'/> : ''}
+							{idx < bodyList.length-1 ? <div className='divider'/> : ''}
 						</>
 					))
 				}

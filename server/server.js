@@ -27,7 +27,7 @@ app.post("/api/user/register", (req, res) => {
 
 	const enbcryptPW = bcrypt.hashSync(password, 10);
 
-  pool.query("INSERT INTO user_info (id, password, user_name, phone_number, address1, address2, birthday, gender, email) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)", 
+  pool.query("INSERT INTO user_info (user_id, password, user_name, phone_number, address1, address2, birthday, gender, email) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)", 
 	[ id, enbcryptPW, user_name, phone_number, address1, address2, birthday, gender, email ],
 	(error, results) => {
       if (error) {
@@ -45,7 +45,7 @@ app.post("/api/user/register", (req, res) => {
 app.post("/api/user/register/id", (req, res) => {
   const { id } = req.body;
 
-  pool.query("SELECT count(id) FROM user_info WHERE id=$1", 
+  pool.query("SELECT count(user_id) FROM user_info WHERE user_id=$1", 
 	[ id ],
 	(error, results) => {
       if (error) {
@@ -88,7 +88,7 @@ app.post("/api/user/login", (req, res) => {
 	// const currentPW = bcrypt.hashSync(password, 10);
 	// const same = bcrypt.compareSync(password, enbcryptPW);
 
-  pool.query( "SELECT * FROM user_info WHERE id=$1", 
+  pool.query( "SELECT * FROM user_info WHERE user_id=$1", 
 	[id],
 	(error, results) => {
       if (error) {
@@ -136,6 +136,58 @@ app.get("/api/user/get", (req, res) => {
     }
   );
 });
+
+// 장바구니 목록
+app.get("/api/cart/:user_id", (req, res) => {
+  // const { label, status, priority } = req.body;
+	const { user_id } = req.params;
+
+  pool.query( " select ct.cart_sid, pd.* " +
+							" from cart as ct, product as pd " +
+							" where ct.product_sid = pd.product_sid " +
+							" and ct.user_id = $1",
+	[ user_id ],
+	(error, results) => {
+      if (error) {
+        throw error;
+      }
+
+			pool.query( " select count(*) " +
+									" from cart as ct, product as pd " +
+									" where ct.product_sid = pd.product_sid " +
+									" and ct.user_id = $1",
+			[ user_id ],
+			(error, countResults) => {
+					res.send({
+						count: parseInt(countResults.rows[0].count),
+						list: results.rows
+					});
+				}
+			)
+    }
+  );
+});
+
+app.get("/api/cart/amount/:user_id", (req, res) => {
+  // const { label, status, priority } = req.body;
+	const { user_id } = req.params;
+
+  pool.query( " select sum(pd.price) " +
+							" from cart as ct, product as pd " +
+							" where ct.product_sid = pd.product_sid " +
+							" and ct.user_id = $1",
+	[ user_id ],
+	(error, results) => {
+      if (error) {
+        throw error;
+      }
+			res.send({
+				amount: results.rows[0].sum,
+			});
+    }
+  );
+});
+
 
 // app.get("/api/board/list/get/:page/:pageInterval", (req, res) => {
 //   const page = req.params.page;
